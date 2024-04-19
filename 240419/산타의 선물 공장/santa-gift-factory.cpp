@@ -2,6 +2,9 @@
 #include <iostream>
 #include <unordered_map>
 using namespace std;
+//#define _crt_secure_no_warnings
+#pragma warning(disable: 4996) 
+
 
 struct BOX {
 	int idx;
@@ -40,15 +43,15 @@ bool empty(int belt_num) {
 	return (belt[belt_num].head->next == belt[belt_num].tail);
 }
 
-void push_back(int belt_num, BOX* item) {
-	box_map[item->idx] = item;
-	BOX* prev = belt[belt_num].tail->prev;
-	BOX* next = belt[belt_num].tail;
+void push_back(int belt_num, BOX* item) {  // 벨트번호, 상자ID 를 받음
+	box_map[item->idx] = item;  // box_map 의 key 는 상자ID
+	BOX* prev = belt[belt_num].tail->prev;   // tail 이전
+	BOX* next = belt[belt_num].tail;   // tail
 
-	item->prev = prev;
-	item->next = next;
-	prev->next = item;
-	next->prev = item;
+	item->prev = prev; // ITEM PRE
+	item->next = next; // ITEM NEXT 
+	prev->next = item;  // 기존 값 TAIL PRE NEXT
+	next->prev = item; // 기존 값 TAIL PRE
 }
 
 void pop_front(int belt_num) {
@@ -68,12 +71,12 @@ void pop_front(int belt_num) {
 }
 
 void q_100() {
-	scanf("%d %d", &n, &m);
+	scanf("%d %d", &n, &m);  // 상자수, 벨트수
 	int id[100000], w[100000];
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i) { // 상자수만큼
 		scanf("%d", &id[i]);
 	}
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i) { // 무게도 상자수 만큼
 		scanf("%d", &w[i]);
 	}
 	int pos = 0;
@@ -205,6 +208,7 @@ int main()
 		switch (cmd) {
 		case 100:
 			q_100();
+			printf("test!\n");
 			break;
 		case 200:
 			//printf("%d\n", q_200());
@@ -227,3 +231,16 @@ int main()
 
 	return 0;
 }
+
+
+/*
+
+7
+100 12 3 10 12 20 15 14 19 22 25 16 17 21 18 30 30 20 20 10 18 17 15 25 11 14 17
+200 25
+300 22
+300 999
+400 14
+400 18
+
+*/
