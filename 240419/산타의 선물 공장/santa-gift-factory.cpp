@@ -208,7 +208,7 @@ int main()
 		switch (cmd) {
 		case 100:
 			q_100();
-			printf("test!\n");
+			//printf("test!\n");
 			break;
 		case 200:
 			//printf("%d\n", q_200());
