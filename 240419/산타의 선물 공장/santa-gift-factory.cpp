@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <iostream>
 #include <unordered_map>
 using namespace std;
 
@@ -61,20 +60,20 @@ void pop_front(int belt_num) {
 	BOX* prev = belt[belt_num].head;
 	BOX* next = belt[belt_num].head->next->next;
 
-	prev->next = next;
-	next->prev = prev;
-	item->prev= NULL;
-	item->next = NULL;
+	item->prev = prev;
+	item->next = next;
+	prev->next = NULL;
+	next->prev = NULL;
 }
 
 void q_100() {
-	scanf("%d %d", &n, &m);
+	scanf_s("%d %d", &n, &m);
 	int id[100000], w[100000];
 	for (int i = 0; i < n; ++i) {
-		scanf("%d", &id[i]);
+		scanf_s("%d", &id[i]);
 	}
 	for (int i = 0; i < n; ++i) {
-		scanf("%d", &w[i]);
+		scanf_s("%d", &w[i]);
 	}
 	int pos = 0;
 	for (int belt_num = 0; belt_num < m; ++belt_num) {
@@ -91,7 +90,7 @@ void q_100() {
 int q_200() {
 	int ret = 0;
 	int w;
-	scanf("%d", &w);
+	scanf_s("%d", &w);
 	for (int i = 0; i < m; ++i) {
 		if (empty(i) || belt[i].is_broken) {
 			continue;
@@ -111,7 +110,7 @@ int q_200() {
 
 int q_300() {
 	int id;
-	scanf("%d", &id);
+	scanf_s("%d", &id);
 	if (box_map.find(id) == box_map.end()) {
 		return -1;
 	}
@@ -132,7 +131,7 @@ int q_300() {
 
 int q_400() {
 	int id;
-	scanf("%d", &id);
+	scanf_s("%d", &id);
 	if (box_map.find(id) == box_map.end()) {
 		return -1;
 	}
@@ -157,7 +156,7 @@ int q_400() {
 
 int q_500() {
 	int belt_num;
-	scanf("%d", &belt_num);
+	scanf_s("%d", &belt_num);
 	--belt_num;
 
 	if (belt[belt_num].is_broken) {
@@ -197,30 +196,24 @@ int q_500() {
 
 int main()
 {
-	scanf("%d", &q);
-
+	scanf_s("%d", &q);
 	while (q--) {
-		scanf("%d", &cmd);
-
+		scanf_s("%d", &cmd);
 		switch (cmd) {
 		case 100:
 			q_100();
 			break;
 		case 200:
-			//printf("%d\n", q_200());
-			cout << q_200() << endl;
+			printf("%d\n", q_200());
 			break;
 		case 300:
-			cout << q_300() << endl;
-			//printf("%d\n", q_300());
+			printf("%d\n", q_300());
 			break;
 		case 400:
-			cout << q_400() << endl;
-			//printf("%d\n", q_400());
+			printf("%d\n", q_400());
 			break;
 		case 500:
-			cout << q_500() << endl;
-			//printf("%d\n", q_500());
+			printf("%d\n", q_500());
 			break;
 		}
 	}
